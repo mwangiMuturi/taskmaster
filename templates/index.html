@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Flask</title>
+    
+{% endblock %}
+
+{% block body %}
+    <h1>Task Master</h1>
+    {% if tasks|length <1 %}
+    <h4>Your tasks only exist in the shadow realm. Add one to the physical below</h4>
+    {% else %}
+    
+    <table class="table">
+        <tr>
+            <th>Mark</th>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>           
+        </tr>
+        {% for task in tasks%}
+        <tr>
+            <td><input type="checkbox" class="p-3 btn btn-primary"></input></td>
+            <td>{{task.content}}</td>
+            <td>{{task.date_created.date()}}</td>
+            <td>
+                <a class="btn btn-warning" href="/update/{{task.id}}">Update</a>
+                <a class="btn btn-danger" href="/delete/{{task.id}}">Delete</a>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+    <form action="/" method="POST" class="d-flex justify-content-around my-2" style="with: 500px;">
+        <input type="text" class="form-control" name="content" id="content" >
+        <input type="submit" class="btn btn-success mx-3" value="Add Task ">
+    </form>
+
+
+{% endblock %}

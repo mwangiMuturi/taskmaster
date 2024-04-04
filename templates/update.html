@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Flask</title>
+    
+{% endblock %}
+
+{% block body %}
+    <h1>Update Task</h1>
+    
+    <form action="/update/{{task.id}}" method="POST" class="d-flex justify-content-around my-2" style="with: 500px;">
+        <input type="text" class="form-control" name="content" id="content" value="{{task.content}}">
+        <input type="submit" class="btn btn-success mx-3" value="Update Task ">
+    </form>
+
+
+{% endblock %}
